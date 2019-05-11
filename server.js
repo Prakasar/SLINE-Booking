@@ -36,12 +36,18 @@ app.get('/',function (req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
-  res.write('<!doctype html>\n<html lang="en">\n' + 
-    '\n<meta name="google-site-verification" content="s6BtPAoM1-qDQ-eTHb_XVVhfvS_NvfOJ1uoSnlLYuUs" />\n<title>Test web page on node.js</title>\n' + 
-    '<style type="text/css">* {font-family:arial, sans-serif;}</style>\n' + 
-    '\n\n<h1>Euro 2012 teams</h1>\n' + 
-    '<div id="content"><p>The teams in Group D for Euro 2012 are:</p><ul><li>England</li><li>France</li><li>Sweden</li><li>Ukraine</li></ul></div>' + 
-    '\n\n');
+  res.write(
+    '<html>\n'+
+    '\n<head>'+
+    '\n<meta name="google-site-verification" content="s6BtPAoM1-qDQ-eTHb_XVVhfvS_NvfOJ1uoSnlLYuUs" />'+
+    '\n<title> My title </title>'+
+    '\n</head> '+
+    '\n<body>'+
+    '\npage contents'+
+    '\n</body>'+
+    '\n</html>'
+
+    );
   res.end();
 
 
