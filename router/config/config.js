@@ -1,12 +1,12 @@
  var mysql = require('mysql');
 //Office Server
 var connection = mysql.createConnection({
-    host: '35.200.252.73',  
+    host: 'sql106.epizy.com',  
      port: 3306,
-     user:'root',
-    password: 'root@123',
-    database:'doctor_booking',
-multipleStatements: false,
+     user:'epiz_23893077',
+    password: 'JKaddl70g',//'olwa3xbMbVO80L',
+    database:'epiz_23893077_doctor_booking',
+multipleStatements: true
     //socketPath:process.env.socketPath//'/cloudsql/${flowing-perigee-236909:asia-south1:doctor}'
 });
 
