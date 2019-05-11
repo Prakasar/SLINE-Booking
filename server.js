@@ -26,8 +26,13 @@ next();
 
 
 
-var http = require('http');  
-http.createServer(function(req, res) {  
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(cors());
+
+app.get('/',function (req, res) {
+
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
@@ -38,17 +43,9 @@ http.createServer(function(req, res) {
     '<div id="content"><p>The teams in Group D for Euro 2012 are:</p><ul><li>England</li><li>France</li><li>Sweden</li><li>Ukraine</li></ul></div>' + 
     '\n\n');
   res.end();
-}).listen(55778,'polar-badlands-67489.herokuapp.com');
-console.log('Server running at http://127.0.0.1:8888');
-//app.use(express.static(path.join(__dirname, 'dist')));
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(cors());
 
+})
 
 app.use('/api/auth',auth_api);
 app.use('/api/doctor_booking/',booking_api);
