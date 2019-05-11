@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res) {
-    res.send('auth works');
+    res.send({msg:'auth works',port:process.env.PORT});
 });
 
 const registartion=require('../authentication/Controller/registration');

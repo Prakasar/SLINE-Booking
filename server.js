@@ -38,7 +38,7 @@ http.createServer(function(req, res) {
     '<div id="content"><p>The teams in Group D for Euro 2012 are:</p><ul><li>England</li><li>France</li><li>Sweden</li><li>Ukraine</li></ul></div>' + 
     '\n\n');
   res.end();
-}).listen(process.env.PORT || 8080, 'polar-badlands-67489.herokuapp.com');
+}).listen('polar-badlands-67489.herokuapp.com');
 console.log('Server running at http://127.0.0.1:8888');
 //app.use(express.static(path.join(__dirname, 'dist')));
 // app.get('*', (req, res) => {
