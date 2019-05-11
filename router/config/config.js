@@ -1,12 +1,12 @@
  var mysql = require('mysql');
 //Office Server
 var connection = mysql.createConnection({
-    host: DB_HOST,//'localhost',//'35.200.252.73',  
-     port:DB_PORT,// 3306,
-     user: DB_USER,//'root',
-    password:process.env.DB_PASS,// 'root@123',
-    database: process.env.DB_NAME//'doctor_booking',
-    //multipleStatements: false,
+    host: '35.200.252.73',  
+     port: 3306,
+     user:'root',
+    password: 'root@123',
+    database:'doctor_booking',
+multipleStatements: false,
     //socketPath:process.env.socketPath//'/cloudsql/${flowing-perigee-236909:asia-south1:doctor}'
 });
 

@@ -24,6 +24,22 @@ res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Ori
 next();
 });
 
+
+
+var http = require('http');  
+http.createServer(function(req, res) {  
+  res.writeHead(200, {
+    'Content-Type': 'text/html'
+  });
+  res.write('<!doctype html>\n<html lang="en">\n' + 
+    '\n<meta name="google-site-verification" content="s6BtPAoM1-qDQ-eTHb_XVVhfvS_NvfOJ1uoSnlLYuUs" />\n<title>Test web page on node.js</title>\n' + 
+    '<style type="text/css">* {font-family:arial, sans-serif;}</style>\n' + 
+    '\n\n<h1>Euro 2012 teams</h1>\n' + 
+    '<div id="content"><p>The teams in Group D for Euro 2012 are:</p><ul><li>England</li><li>France</li><li>Sweden</li><li>Ukraine</li></ul></div>' + 
+    '\n\n');
+  res.end();
+}).listen(8888, '127.0.0.1');
+console.log('Server running at http://127.0.0.1:8888');
 //app.use(express.static(path.join(__dirname, 'dist')));
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'dist/index.html'));
