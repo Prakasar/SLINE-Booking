@@ -1,0 +1,26 @@
+const express = require('express');
+
+const router = express.Router();
+
+router.get('/', function(req, res) {
+    res.send('auth works');
+});
+
+const registartion=require('../authentication/Controller/registration');
+const Authentication=require('../authentication/Controller/login');
+
+router.post('/user_Registration',
+  registartion.register
+);
+
+router.get('/email_verification/:email_id/:code',registartion.email_verification);
+
+router.post('/Login',function(req,res){
+ Authentication.Login(req,res);
+});
+
+router.post('/encrypt',function(req,res){
+  Authentication.createCreditintial(req,res);
+ });
+
+module.exports = router;
