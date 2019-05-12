@@ -7,7 +7,9 @@ var db=require('../config/Database');
 module.exports.location_based_hospitalList = function (req, res) {
     try{  
         connection.query('call usp_doc_hospitalList('+req.params.latitude+','+req.params.longitude+');',function (err,hospitalLists){
-           if(hospitalLists&&hospitalLists.length>0)
+           
+           //console.log(err);
+            if(hospitalLists&&hospitalLists.length>0)
            {
             res.send({
                 status: true,
