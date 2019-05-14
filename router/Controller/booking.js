@@ -39,6 +39,7 @@ module.exports.location_based_hospitalList = function (req, res) {
 module.exports.doctor_list_of_hospital = function (req, res) {
     try{  
         connection.query('call usp_doc_doctorList_byHospital('+req.params.hospital_id+');',function (err,doctor_list){
+
            if(doctor_list&&doctor_list.length>0)
            {
             res.send({
