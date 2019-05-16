@@ -46,8 +46,8 @@ module.exports.Login = function (req, res) {
              res.send({
                 status: true,
                 message: 'Login success',
-                response: {code: 1,
-                    message: "Login Successfully."}
+                response:[{code: 1,
+                    message: "Login Successfully."}]
             });
         }else{
             var msg=[];
