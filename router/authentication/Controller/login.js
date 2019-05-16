@@ -50,29 +50,29 @@ module.exports.Login = function (req, res) {
                     message: "Login Successfully."}
             });
         }else{
-            var msg={};
-            msg={"error_code":"403","error_message":"user not found"};
+            var msg=[];
+            msg.push({"error_code":"403","error_message":"user not found"});
             var msg_list=[];
-            msg_list.push("message",msg);
+           // msg_list.push("message",msg);
 
             res.send({
                 status: false,
                 message: '500/406/403',
-                response: msg_list,
+                response: msg,
             })
         }
     });
 }catch(err)
 {
-    var msg={};
-    msg={"error_code":"403","error_message":"user not found"};
+    var msg=[];
+    msg.push({"error_code":"403","error_message":"user not found"});
     var msg_list=[];
-    msg_list.push("message",msg);
+  //  msg_list.push("message",msg);
 
     res.send({
         status: false,
         message: '500/406/403',
-        response: msg_list,
+        response: msg,
     })
 }
    
