@@ -12,5 +12,10 @@ router.get('/location_based_hospital_lists/:latitude/:longitude',
 router.get('/doctor_list_of_selected_hopital/:hospital_id',
   hos_booking.doctor_list_of_hospital
 );
-
+router.get('/hospital_search_list/:searchText',
+  hos_booking.hospital_search_list
+);
+router.post('/appointment_book',
+  hos_booking.doctor_appointment
+);
 module.exports = router;
