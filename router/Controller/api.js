@@ -18,4 +18,7 @@ router.get('/hospital_search_list/:searchText',
 router.post('/appointment_book',
   hos_booking.doctor_appointment
 );
+router.post('/app_usr_select_time_staus',
+  hos_booking.doctor_appointment_time_check
+);
 module.exports = router;

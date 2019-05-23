@@ -102,12 +102,20 @@ module.exports.doctor_appointment = function (req, res) {
     try{  
         connection.query('call usp_doc_booking('+req.body.doctor_id+','+req.body.hospital_id+',"'+req.body.patient_name+'",'+req.body.patient_mob_no+',"'+req.body.appointment_on+'","'+req.body.timing+'",'+req.body.booked_by+');',function (err,appointment){
 
-          console.log(err);
+          if(err)
+          {
+            res.send({
+                status: false,
+                message: 'error',
+                response:err
+            });
+          }else{
             res.send({
                 status: true,
                 message: 'appointment success',
                 response:appointment,
-            })
+            });
+        }
         });
        
     }catch(err)
@@ -115,6 +123,36 @@ module.exports.doctor_appointment = function (req, res) {
         res.send({
             status:false,
             message: 'Error occred when appointment booking.js--->doctor_appointment',
+            response:err
+                })
+    }
+ 
+}
+
+module.exports.doctor_appointment_time_check = function (req, res) {
+    try{  
+        connection.query('call usp_doc_check_appointment("'+req.body.appointment_time+'",'+req.body.doctor_id+','+req.body.hospital_id+',"'+req.body.appointment_on+'");',function (err,appointment){
+console.log(appointment);
+          if(!err){
+            res.send({
+                status: true,
+                message: 'appointment time staus',
+                response:appointment[0],
+            });
+        }else{
+            res.send({
+                status: false,
+                message: 'error',
+                response:err
+            });
+        }
+        });
+       
+    }catch(err)
+    {
+        res.send({
+            status:false,
+            message: 'Error occred when appointment booking.js--->doctor_appointment_time_check',
             response:err
                 })
     }
