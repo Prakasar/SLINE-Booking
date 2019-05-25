@@ -100,7 +100,7 @@ module.exports.doctor_list_of_hospital = function (req, res) {
 
 module.exports.doctor_appointment = function (req, res) {
     try{  
-        connection.query('call usp_doc_booking('+req.body.doctor_id+','+req.body.hospital_id+',"'+req.body.patient_name+'",'+req.body.patient_mob_no+',"'+req.body.appointment_on+'","'+req.body.timing+'",'+req.body.booked_by+');',function (err,appointment){
+        connection.query('call usp_doc_booking('+req.body.doctor_id+','+req.body.hospital_id+',"'+req.body.patient_name+'",'+req.body.patient_mob_no+',"'+req.body.appointment_on+'","'+req.body.timing+'",'+req.body.booked_by+',"'+req.body.purpose+'");',function (err,appointment){
 
           if(err)
           {
