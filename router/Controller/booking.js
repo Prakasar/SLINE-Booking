@@ -69,7 +69,7 @@ module.exports.hospital_search_list = function (req, res) {
 
 module.exports.doctor_list_of_hospital = function (req, res) {
     try{  
-        connection.query('call usp_doc_doctorList_byHospital('+req.params.hospital_id+');',function (err,doctor_list){
+        connection.query('call usp_doc_doctorList_byHospital('+req.params.hospital_id+',"'+req.params.booking_on+'");',function (err,doctor_list){
 
            if(doctor_list&&doctor_list.length>0)
            {
@@ -123,6 +123,35 @@ module.exports.doctor_appointment = function (req, res) {
         res.send({
             status:false,
             message: 'Error occred when appointment booking.js--->doctor_appointment',
+            response:err
+                })
+    }
+ 
+}
+
+module.exports.booking_history = function (req, res) {
+    try{  
+        connection.query('call usp_doc_booking_histry('+req.params.user_id+');',function (err,histry){
+          if(!err){
+            res.send({
+                status: true,
+                message: 'Booking histry',
+                response:histry[0],
+            });
+        }else{
+            res.send({
+                status: false,
+                message: 'error',
+                response:err
+            });
+        }
+        });
+       
+    }catch(err)
+    {
+        res.send({
+            status:false,
+            message: 'Error occred when appointment booking.js--->booking_history',
             response:err
                 })
     }
