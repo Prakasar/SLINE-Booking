@@ -14,6 +14,7 @@ module.exports.Login = function (req, res) {
       console.log(UserRole);
      
         var Credintial = LINQ(UserRole[0]).select(function (s) { return { "password":s.password,"password_key":s.password_parse} }).toList();
+		let user= LINQ(UserRole[0]).select(function (s) { return { "user_id":s.user_id,"user_name":s.first_name} }).toList();
         var password='';
         var password_key='';
         var encrypt_pass='';
@@ -46,8 +47,8 @@ module.exports.Login = function (req, res) {
              res.send({
                 status: true,
                 message: 'Login success',
-                response:[{code: 1,
-                    message: "Login Successfully."}]
+                response:user
+				
             });
         }else{
             var msg=[];
