@@ -56,7 +56,8 @@ var verification_code=rows[0][0]["verification_code"];
             res.send({
                 status: true,
                 message: 'Success',
-                response:{'user_id':rows[0][0]["user_id"],'user_name':rows[0][0]["user_name"]};
+                response:{'user_id':rows[0][0]["user_id"],'user_name':rows[0][0]["user_name"]}
+            })
         
     }).catch( err => {
         console.log(err);
