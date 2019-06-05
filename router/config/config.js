@@ -3,9 +3,9 @@
 var connection = mysql.createConnection({
     host: 'sql12.freemysqlhosting.net',  
      port: 3306,
-     user:'sql12292861',
-    password: 'EaWF6VZvEC',//'olwa3xbMbVO80L',
-    database:'sql12292861',
+     user:'sql12294594',
+    password: 'YkCQvR8mcc',//'olwa3xbMbVO80L',
+    database:'sql12294594',
 multipleStatements: true
     //socketPath:process.env.socketPath//'/cloudsql/${flowing-perigee-236909:asia-south1:doctor}'
 });

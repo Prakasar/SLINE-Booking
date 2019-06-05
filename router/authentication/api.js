@@ -19,6 +19,10 @@ router.post('/Login',function(req,res){
  Authentication.Login(req,res);
 });
 
+router.get('/get_user_details/:user_id',function(req,res){
+  registartion.user_details(req,res);
+ });
+
 router.post('/encrypt',function(req,res){
   Authentication.createCreditintial(req,res);
  });
