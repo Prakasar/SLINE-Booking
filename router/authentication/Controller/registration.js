@@ -28,7 +28,7 @@ module.exports.register = function (req, res) {
   var pass_parse = 'ASDF93ERT2908IODFG85RVB30';
   var photo_data = req.body.photo_data;
   var enc_pwd = safe.encrypt(req.body.password, pass_parse);
-
+console.log(photo_data);
   var profile_img_url = '';
   if (photo_data) {
     var imageTypeDetected = helper.decodeBase64Image(photo_data);
@@ -41,6 +41,8 @@ module.exports.register = function (req, res) {
 
   database.query('call usp_doc_user_profile(' + profile_id + ',"' + first_name + '","' + last_name + '","' + dob + '","' + email_id + '","' + mobile_no + '","' + city + '","' + address + '","' + pincode + '","' + phone + '",' + state_id + ',' + district_id + ',' + city_id + ',"' + enc_pwd + '","' + pass_parse + '","' + profile_img_url + '");')
     .then(rows => {
+      if(profile_id==0)
+      {
       var verification_code = rows[0][0]["verification_code"];
       var to = email_id;
       var cc = "rprakashkgm@gmail.com";
@@ -58,7 +60,13 @@ module.exports.register = function (req, res) {
         message: 'Success',
         response: { 'user_id': rows[0][0]["user_id"], 'user_name': rows[0][0]["user_name"] }
       })
-
+    }else{
+      res.send({
+        status: true,
+        message: 'Profile Successfully updated ',
+        response: ''
+      })
+    }
     }).catch(err => {
       console.log(err);
       res.send({
