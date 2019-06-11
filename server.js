@@ -5,7 +5,7 @@ bodyParser = require('body-parser');
 
 const auth_api = require('./router/authentication/api');
 const booking_api = require('./router/Controller/api');
-const web_api = require('./router/web_controller/api');
+//const web_api = require('./router/web_controller/api');
 const app = express();
 var cors = require('cors');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -55,7 +55,7 @@ app.get('/',function (req, res) {
 
 app.use('/api/auth',auth_api);
 app.use('/api/doctor_booking/',booking_api);
-app.use('/api/web_api/',web_api);
+//app.use('/api/web_api/',web_api);
 const port = process.env.PORT || 8080;
 
 
