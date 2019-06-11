@@ -28,7 +28,7 @@ module.exports.register = function (req, res) {
   var pass_parse = 'ASDF93ERT2908IODFG85RVB30';
   var photo_data = req.body.photo_data;
   var enc_pwd = safe.encrypt(req.body.password, pass_parse);
-console.log(photo_data);
+
   var profile_img_url = '';
   if (photo_data) {
     var imageTypeDetected = helper.decodeBase64Image(photo_data);
