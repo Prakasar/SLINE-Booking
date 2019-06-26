@@ -191,7 +191,7 @@ console.log(appointment);
 
 module.exports.doctor_appointment_waiting_status = function (req, res) {
     try{  
-        connection.query('call usp_doc_booking_waiting_status("'+req.params.booking_on+'",'+req.params.user_id+');',function (err,appointment){
+        connection.query('call usp_doc_booking_waiting_status('+req.params.user_id+',"'+req.params.booking_on+'");',function (err,appointment){
 console.log(appointment);
           if(!err){
             res.send({
@@ -212,7 +212,7 @@ console.log(appointment);
     {
         res.send({
             status:false,
-            message: 'Error occred when appointment booking.js--->doctor_appointment_list',
+            message: 'Error occred when appointment booking.js--->doctor_appointment_waiting_status',
             response:err
                 })
     }
