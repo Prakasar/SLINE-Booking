@@ -6,6 +6,7 @@ router.get('/', function(req, res) {
 });
 
 const hos_booking=require('../Controller/booking');
+const file=require('../Controller/file');
 router.get('/location_based_hospital_lists/:latitude/:longitude',
   hos_booking.location_based_hospitalList
 );
@@ -25,4 +26,12 @@ router.post('/app_usr_select_time_staus',
 router.get('/doc_booking_history/:user_id',
   hos_booking.booking_history
 );
+router.get('/doc_booking_waiting_status/:booking_on/:user_id',
+  hos_booking.doctor_appointment_waiting_status
+);
+
+router.post('/file',
+  file.profile
+);
+
 module.exports = router;

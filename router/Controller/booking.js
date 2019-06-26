@@ -187,3 +187,34 @@ console.log(appointment);
     }
  
 }
+
+
+module.exports.doctor_appointment_waiting_status = function (req, res) {
+    try{  
+        connection.query('call usp_doc_booking_waiting_status("'+req.params.booking_on+'",'+req.params.user_id+');',function (err,appointment){
+console.log(appointment);
+          if(!err){
+            res.send({
+                status: true,
+                message: 'appointment waiting status',
+                response:appointment[0],
+            });
+        }else{
+            res.send({
+                status: false,
+                message: 'error',
+                response:err
+            });
+        }
+        });
+       
+    }catch(err)
+    {
+        res.send({
+            status:false,
+            message: 'Error occred when appointment booking.js--->doctor_appointment_list',
+            response:err
+                })
+    }
+ 
+}
