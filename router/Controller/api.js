@@ -30,6 +30,10 @@ router.get('/doc_booking_waiting_status/:booking_on/:user_id',
   hos_booking.doctor_appointment_waiting_status
 );
 
+router.get('/doc_booking_cancel/:booking_id',
+  hos_booking.doctor_appointment_cancel
+);
+
 router.post('/file',
   file.profile
 );
