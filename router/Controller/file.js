@@ -17,26 +17,14 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('profileImage');
 
 module.exports.profile=function(req,res){
-    
-    var url='tested';
-    req.on('data', chunk => {
-        var c= chunk;
-        if(c)
-        {
-        console.log(c);
-        }
-    });
-        upload(req, res, function (err) {
+            upload(req, res, function (err) {
        
             if (err) {
            
             }else{
-                if(req.file);
-                {
-                    console.log('file have');
-                }
-               // url= req.file.destination + req.file.filename
-                console.log(url);    
+                
+             req.file.destination + req.file.filename
+                console.log(req.post.user_id);    
             }
         })
         }   
