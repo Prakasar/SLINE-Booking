@@ -9,7 +9,7 @@ var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './router/uploads/')
     },
-    filename: function (req, file, cb) {
+    filename: function (req, file, cb) { 
         cb(null, file.fieldname + '-' + Date.now() + '.jpg');
     }
 });
