@@ -51,13 +51,15 @@ let jod=req.body.jod;
 let experiance=req.body.experiance;
 let description=req.body.description;
 let created_by=req.body.user_id;
-let is_active=req.body.is_active;
+let is_active=req.body.is_active==1?true:false;
 var pass_parse = 'ASDF93ERT2908IODFG85RVB30';
 var enc_pwd = safe.encrypt(req.body.password, pass_parse);
     try{  
-        let sql_str='call usp_doc_doctor_add(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
-        let sql_params=[doctor_id,doc_name,last_name,education,mobile_no,phone_no,email_id,specialization_id,dob,jod,experiance,description,created_by,is_active,enc_pwd,pass_parse];
-        connection.query(sql_str,sql_params,function (err,doctor){
+        let sql_str='call usp_doc_doctor_add(?);';
+        let sql_params=[doctor_id,doc_name,last_name,education,mobile_no,
+            phone_no,email_id,specialization_id,dob,jod,
+            experiance,description,created_by,is_active,enc_pwd,pass_parse];
+        connection.query(sql_str,[sql_params],function (err,doctor){
            
            console.log(doctor);
             if(doctor)
@@ -72,7 +74,7 @@ var enc_pwd = safe.encrypt(req.body.password, pass_parse);
             res.send({
                 status:true,
                 message: 'Data not found',
-                response:[]
+                response:err
             })
         }
         });
