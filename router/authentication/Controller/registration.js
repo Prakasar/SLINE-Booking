@@ -26,18 +26,18 @@ module.exports.register = function (req, res) {
   var city_id = req.body.city_id;
   var password = req.body.password;
   var pass_parse = 'ASDF93ERT2908IODFG85RVB30';
-  var photo_data = req.body.photo_data;
+  var profile_img_url = req.body.photo_url;
   var enc_pwd = safe.encrypt(req.body.password, pass_parse);
 
-  var profile_img_url = '';
-  if (photo_data) {
-    var imageTypeDetected = helper.decodeBase64Image(photo_data);
-    var extension = imageTypeDetected;
-    var document_name = "/" + mobile_no;
-    var location = path.join(__dirname, '../uploads/registration/photo');
-    profile_img_url = '/uploads/registration/proof_' + document_name + '.' + extension;
-    var status = helper.imageUpload(photo_data, location, document_name);
-  }
+  
+  // if (photo_data) {
+  //   var imageTypeDetected = helper.decodeBase64Image(photo_data);
+  //   var extension = imageTypeDetected;
+  //   var document_name = "/" + mobile_no;
+  //   var location = path.join(__dirname, '../uploads/registration/photo');
+  //   profile_img_url = '/uploads/registration/proof_' + document_name + '.' + extension;
+  //   var status = helper.imageUpload(photo_data, location, document_name);
+  // }
 
   database.query('call usp_doc_user_profile(' + profile_id + ',"' + first_name + '","' + last_name + '","' + dob + '","' + email_id + '","' + mobile_no + '","' + city + '","' + address + '","' + pincode + '","' + phone + '",' + state_id + ',' + district_id + ',' + city_id + ',"' + enc_pwd + '","' + pass_parse + '","' + profile_img_url + '");')
     .then(rows => {
