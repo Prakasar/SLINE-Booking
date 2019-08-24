@@ -43,6 +43,8 @@ module.exports.register = function (req, res) {
     .then(rows => {
       if(profile_id==0)
       {
+        if( rows[0][0]["verification_code"])
+        {
       var verification_code = rows[0][0]["verification_code"];
       var to = email_id;
       var cc = "rprakashkgm@gmail.com";
@@ -63,10 +65,17 @@ module.exports.register = function (req, res) {
     }else{
       res.send({
         status: true,
-        message: 'Profile Successfully updated ',
-        response: ''
+        message: ' ',
+        response: rows
       })
     }
+  }else{
+    res.send({
+      status: true,
+      message: ' ',
+      response: rows
+    })
+  }
     }).catch(err => {
       console.log(err);
       res.send({

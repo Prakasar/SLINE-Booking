@@ -27,4 +27,9 @@ router.post('/encrypt',function(req,res){
   Authentication.createCreditintial(req,res);
  });
 
+ 
+ router.post('/decrypt',function(req,res){
+  Authentication.decrypt(req,res);
+ });
+
 module.exports = router;

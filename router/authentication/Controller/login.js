@@ -88,3 +88,12 @@ module.exports.createCreditintial=function(req,res){
     details: {encrypted_text:encrypted,key:req.body.key}
 });
 }
+
+module.exports.decrypt = function (req, res) {
+    var text = safe.decrypt(req.body.encrypted_text, req.body.key);
+
+    res.send({
+        status: true,
+        details: { text: text, key: req.body.key }
+    });
+}
