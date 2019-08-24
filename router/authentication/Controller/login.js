@@ -11,10 +11,11 @@ module.exports.Login = function (req, res) {
 
     try{  
     connection.query('call usp_auth_authentication("'+req.body.UserName+'");',function (err,UserRole){
-      console.log(UserRole);
+      
      
         var Credintial = LINQ(UserRole[0]).select(function (s) { return { "password":s.password,"password_key":s.password_parse} }).toList();
-		let user= LINQ(UserRole[0]).select(function (s) { return { "user_id":s.user_id,"user_name":s.first_name} }).toList();
+        let user= LINQ(UserRole[0]).select(function (s) { return { "user_id":s.user_id,"user_name":s.first_name} }).toList();
+        console.log(Credintial);
         var password='';
         var password_key='';
         var encrypt_pass='';
@@ -27,7 +28,7 @@ module.exports.Login = function (req, res) {
         {
          encrypt_pass=safe.decrypt(password,password_key);
         }
-        //console.log(encrypt_pass);
+        console.log(encrypt_pass);
         if(req.body.Password==encrypt_pass)
         {
             // var user=LINQ(UserRole[0]).select(function (s) { return { "auth_account_id":s.auth_account_id,"user_id":s.user_id,"username":s.username,"changed_on":s.changed_on,"firstname":s.firstname,"lastname":s.lastname,"dob":s.date_of_birth,"mobile_no":s.mobile_no,"email_address":s.email_address,"designation":s.designation,
