@@ -12,7 +12,8 @@ module.exports.Login = function (req, res) {
     try{  
     connection.query('call usp_auth_authentication("'+req.body.UserName+'");',function (err,UserRole){
       
-     
+     if(UserRole[0])
+     {
         var Credintial = LINQ(UserRole[0]).select(function (s) { return { "password":s.password,"password_key":s.password_parse} }).toList();
         let user= LINQ(UserRole[0]).select(function (s) { return { "user_id":s.user_id,"user_name":s.first_name} }).toList();
         console.log(Credintial);
@@ -63,7 +64,16 @@ module.exports.Login = function (req, res) {
                 response: msg,
             })
         }
+    }else{
+        
+        res.send({
+            status: false,
+            message: 'Retry',
+            response:''
+        })
+    }
     });
+    
 }catch(err)
 {
     var msg=[];
