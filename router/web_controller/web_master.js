@@ -182,3 +182,38 @@ module.exports.booking_list = function (req, res) {
     }
  
 }
+
+module.exports.add_hospital = function (req, res) {
+    try{  
+        var password = req.body.password;
+  var pass_parse = 'ASDF93ERT2908IODFG85RVB30';
+  var enc_pwd = safe.encrypt(req.body.in_password, pass_parse);
+        connection.query('call usp_doc_add_hospital('+req.body.hospital_id+','+req.body.in_name+','+req.body.in_ownere_name+',"'+req.body.in_email_id+'",'+req.body.in_phone_no+',"'+req.body.in_mob_no+'","'+req.body.in_address+'","'+req.body.logourl+'",'+req.body.in_is_active+',"'+req.body.in_latitude+'",,"'+req.body.in_longitude+'","'+req.body.in_google_location+'","'+req.body.in_city+'","'+req.body.in_state+'","'+req.body.in_country+'","'+req.body.in_landmark+'","'+req.body.in_specialization+'","'+req.body.in_created_by+'","'+enc_pwd+'","'+pass_parse+'","'+req.body.in_valid_to+'");',function (err,appointment){
+
+          if(err)
+          {
+            res.send({
+                status: false,
+                message: 'error',
+                response:err
+            });
+          }else{
+            res.send({
+                status: true,
+                message: ' success',
+                response:appointment
+            });
+        }
+        });
+       
+    }catch(err)
+    {
+        console.log(err);
+        res.send({
+            status:false,
+            message: 'Error occred when appointment booking.js--->doctor_appointment',
+            response:err
+                })
+    }
+ 
+}
