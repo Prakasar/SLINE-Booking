@@ -183,6 +183,8 @@ module.exports.booking_list = function (req, res) {
  
 }
 
+
+
 module.exports.add_hospital = function (req, res) {
     try{  
         var password = req.body.password;
@@ -212,6 +214,68 @@ module.exports.add_hospital = function (req, res) {
         res.send({
             status:false,
             message: 'Error occred when appointment booking.js--->doctor_appointment',
+            response:err
+                })
+    }
+ 
+}
+
+
+module.exports.booking_staus = function (req, res) {
+    
+    try{  
+        let str='call usp_doc_booking_status(?)';
+        let params=[req.params.booking_id];
+        connection.query(str,params,function (err,booking){
+           
+           
+            res.send({
+                status: true,
+                message: 'staus saved',
+                response:booking,
+            })
+        
+        });
+    }catch(err)
+    {
+        res.send({
+            status:false,
+            message: 'Error occred in add_doctor.js--->booking_staus',
+            response:err
+                })
+    }
+ 
+}
+
+module.exports.doctor_seassion_search = function (req, res) {
+    
+    try{  
+        let str='call usp_doc_search_doctor_session(?,?,?)';
+        let params=[req.body.date_on,req.body.in_session,req.body.hospital_id];
+        connection.query(str,params,function (err,booking){
+           
+            if(booking&&booking.length>0)
+           {
+            res.send({
+                status: true,
+                message: 'doctor list',
+                response:booking,
+            })
+        }
+        else{
+            res.send({
+                status:true,
+                message: 'Data not found',
+                response:[]
+            })
+        }
+        
+        });
+    }catch(err)
+    {
+        res.send({
+            status:false,
+            message: 'Error occred in add_doctor.js--->doctor_seassion_search',
             response:err
                 })
     }

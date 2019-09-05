@@ -14,6 +14,8 @@ router.post('/web_add_doctor_attendance',doctor.doctor_attendance);
 router.post('/web_booking_list',doctor.booking_list);
 router.post('/hospital_profile',doctor.add_hospital);
 
+router.get('/web_booking_staus/:booking_id',doctor.booking_staus);
+router.post('/web_doctor_search_seassion',doctor.doctor_seassion_search);
 
 
 module.exports=router;
