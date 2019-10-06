@@ -281,3 +281,35 @@ module.exports.doctor_seassion_search = function (req, res) {
     }
  
 }
+
+module.exports.hospital_list = function (req, res) {
+    try{  
+        
+        connection.query('call usp_doc_hospital_web_list();',function (err,hospital_list){
+
+           if(hospital_list&&hospital_list.length>0)
+           {
+            res.send({
+                status: true,
+                message: 'Hospital  list',
+                response:hospital_list[0],
+            })
+        }
+        else{
+            res.send({
+                status:true,
+                message: 'Data not found',
+                response:[]
+            })
+        }
+        });
+    }catch(err)
+    {
+        res.send({
+            status:false,
+            message: 'Error occred in booking.js--->hospital_search_list',
+            response:err
+                })
+    }
+ 
+}

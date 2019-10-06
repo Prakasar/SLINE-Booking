@@ -38,6 +38,7 @@ module.exports.location_based_hospitalList = function (req, res) {
 
 module.exports.hospital_search_list = function (req, res) {
     try{  
+        console.log('call usp_doc_hospital_search("'+req.params.searchText+'");');
         connection.query('call usp_doc_hospital_search("'+req.params.searchText+'");',function (err,hospital_list){
 
            if(hospital_list&&hospital_list.length>0)

@@ -11,7 +11,7 @@ module.exports.Login = function (req, res) {
 
     try{  
     connection.query('call usp_auth_authentication("'+req.body.UserName+'");',function (err,UserRole){
-      
+      console.log(UserRole);
      if(UserRole[0])
      {
         var Credintial = LINQ(UserRole[0]).select(function (s) { return { "password":s.password,"password_key":s.password_parse} }).toList();
