@@ -57,16 +57,24 @@ module.exports.register = function (req, res) {
       } catch (err) {
         console.log(err);
       }
+      console.log(rows);
       res.send({
         status: true,
         message: 'Success',
         response: { 'user_id': rows[0][0]["user_id"], 'user_name': rows[0][0]["user_name"] }
       })
     }else{
+      let msg='Success.';
+      let status=true;
+      if(rows[0][0].msg=='User already exists')
+      {
+        msg=rows[0][0].msg;
+        status=false;
+      }
       res.send({
-        status: true,
-        message: ' ',
-        response: rows
+        status: status,
+        message: msg,
+        response: []
       })
     }
   }else{
