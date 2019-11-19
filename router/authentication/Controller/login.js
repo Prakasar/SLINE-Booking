@@ -92,8 +92,9 @@ module.exports.Login = function (req, res) {
 
 
 module.exports.createCreditintial=function(req,res){
+    console.log(req.body);
    var encrypted= safe.encrypt(req.body.password,req.body.key);
-
+console.log(encrypted);
    res.send({
     status: true,
     details: {encrypted_text:encrypted,key:req.body.key}
