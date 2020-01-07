@@ -1,11 +1,11 @@
  var mysql = require('mysql');
 //Office Server
 var connection = mysql.createConnection({
-    host: 'mysql-3677-0.cloudclusters.net',// '127.0.0.1',  
-     port: 10011,
-     user:'sline_cbe',//'root',
-   password: 'Sline@1993',//'olwa3xbMbVO80L',
-    database:'sline',
+    host: 'mysql-7042-0.cloudclusters.net',// '127.0.0.1',  
+     port: 7042,
+     user:'Karthick',//'root',
+   password: 'Coimbatore_14',//'olwa3xbMbVO80L',
+    database:'slinedoctor',
 multipleStatements: true
     //socketPath:process.env.socketPath//'/cloudsql/${flowing-perigee-236909:asia-south1:doctor}'
 });
