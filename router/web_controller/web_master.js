@@ -119,10 +119,13 @@ module.exports.doctor_list_hospital = function (req, res) {
 module.exports.doctor_attendance = function (req, res) {
     try {
 
-        let str_sql = 'call usp_doc_doctor_attendance(?,?,?,?,?,?,?,?)';
-        let params = [req.body.doc_status_id, req.body.doctor_id, req.body.status_on, req.body.fromTime, req.body.toTime, req.body.fromTime1, req.body.toTime1, req.body.is_available];
-        connection.query(str_sql, params, function (err, attendance) {
+        let str_sql = 'call usp_doc_doctor_attendance(?)';
+        let params = [req.body.doc_status_id, req.body.doctor_id, req.body.status_on,
+             req.body.fromTime, req.body.toTime,req.body.is_available,req.body.status_id,req.body.waiting_time,
+            req.body.emergency_delay,req.body.token,req.body.no_of_peopple_in_line,req.body.line_end_time];
+        connection.query(str_sql, [params], function (err, attendance) {
 
+            console.log(err);
 
             res.send({
                 status: true,
@@ -144,7 +147,7 @@ module.exports.doctor_attendance = function (req, res) {
 module.exports.booking_list = function (req, res) {
 
     try {
-        let str = 'call usp_doc_booking_list(?,?)';
+        let str = 'call usp_doc_booking_list(? )';
         let params = [req.body.booking_on, req.body.hospital_id];
         connection.query(str, params, function (err, booking) {
 
@@ -294,6 +297,103 @@ module.exports.hospital_list = function (req, res) {
         res.send({
             status: false,
             message: 'Error occred in booking.js--->hospital_search_list',
+            response: err
+        })
+    }
+
+}
+
+
+module.exports.status_list = function (req, res) {
+    try {
+        connection.query('call usp_get_doctor_status_list();', function (err, status_list) {
+
+            console.log(status_list);
+            if (status_list && status_list.length > 0) {
+                res.send({
+                    status: true,
+                    message: 'patient status',
+                    response: status_list[0],
+                })
+            }
+            else {
+                res.send({
+                    status: true,
+                    message: 'Data not found',
+                    response: []
+                })
+            }
+        });
+    } catch (err) {
+        res.send({
+            status: false,
+            message: 'Error occred in add_doctor.js--->doctor_specilisation_list',
+            response: err
+        })
+    }
+
+}
+
+
+module.exports.get_doctor_by_hospital_id = function (req, res) {
+    try {
+
+        let hospital_id=req.params.hospital_id;
+        connection.query('call usp_get_doctor_by_hospital_id(?);',[hospital_id], function (err, status_list) {
+
+            console.log(status_list);
+            if (status_list && status_list.length > 0) {
+                res.send({
+                    status: true,
+                    message: 'doctor list',
+                    response: status_list[0],
+                })
+            }
+            else {
+                res.send({
+                    status: true,
+                    message: 'Data not found',
+                    response: []
+                })
+            }
+        });
+    } catch (err) {
+        res.send({
+            status: false,
+            message: 'Error occred in add_doctor.js--->doctor_specilisation_list',
+            response: err
+        })
+    }
+
+}
+
+module.exports.get_doc_status_details = function (req, res) {
+    try {
+        let doctor_id=req.params.doctor_id;
+        let hospital_id=req.params.hospital_id;
+        let params=[doctor_id,hospital_id];
+        connection.query('call usp_doc_status_details(?);',[params], function (err,status) {
+
+            console.log(err);
+            if (status && status.length > 0) {
+                res.send({
+                    status: true,
+                    message: 'doctor status details',
+                    response: status[0],
+                })
+            }
+            else {
+                res.send({
+                    status: true,
+                    message: 'Data not found',
+                    response: []
+                })
+            }
+        });
+    } catch (err) {
+        res.send({
+            status: false,
+            message: 'Error occred in add_doctor.js--->doctor_specilisation_list',
             response: err
         })
     }
